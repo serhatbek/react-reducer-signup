@@ -1,7 +1,12 @@
-import './App.css';
+import './App.scss';
+import Signup from './components/Signup/Signup';
 
 function App() {
-  return <div className='App'>hello</div>;
+  return (
+    <main>
+      <Signup />
+    </main>
+  );
 }
 
 export default App;
