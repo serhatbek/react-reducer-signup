@@ -1,45 +1,15 @@
 import './Signup.scss';
-import { useReducer } from 'react';
+import { useSignupContext } from './SignupContext';
 
-const initialState = {
-  name: '',
-  email: '',
-  password: '',
-  passwordRepeat: '',
-  termsAccepted: false,
-};
-
-const reducer = (state, action) => {
-  return { ...state, [action.input]: action.value };
-};
-
-const Signup = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+const Signup2 = () => {
+  const { handleChange, validateState, state } = useSignupContext();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('form with reducer', state);
+    console.log('form with context & reducer', state);
   };
-
-  const handleChange = (e) => {
-    const { name, value, checked } = e.target;
-    const action = {
-      input: name,
-      value: name === 'termsAccepted' ? checked : value,
-    };
-    dispatch(action);
-  };
-
-  const validateState = (state) => {
-    return (
-      state.password === state.passwordRepeat &&
-      state.termsAccepted &&
-      state.password.length > 4
-    );
-  };
-
   return (
-    <form className='form container' onSubmit={handleSubmit}>
+    <form className='form container--v2 container' onSubmit={handleSubmit}>
       <h1>Signup</h1>
 
       <div className='form__row'>
@@ -97,4 +67,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Signup2;
